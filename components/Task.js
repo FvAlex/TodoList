@@ -1,9 +1,9 @@
 import React from 'react'
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 
-const Task = (props) => {
+const Task = ({item, deleteTask}) => {
 
     const delMsg = () => Alert.alert(
         "Suppression tâche",
@@ -11,7 +11,7 @@ const Task = (props) => {
         [
             {
                 text: "Oui",
-                onPress: () => props.deleteTask(props.id)
+                onPress: () => deleteTask(item.id)
             }, 
             {
                 text: "Non",
@@ -22,9 +22,19 @@ const Task = (props) => {
         { cancelable: false }
     )
 
+    const check = () => {
+
+    }
+
     return (
-        <View style={styles.task}>
-            <Text >{props.title} </Text>
+        <View style={item.completed ? styles.taskCompleted: styles.task}>
+            <TouchableOpacity onPress={check}>
+                {item.completed 
+                ? <MaterialIcons name="radio-button-checked" size={24} color="black" />
+                : <MaterialIcons name="radio-button-unchecked" size={24} color="black" />}
+            </TouchableOpacity>
+            
+            <Text >{item.title} </Text>
             <TouchableOpacity onPress={delMsg}>
                 <MaterialCommunityIcons name="delete-variant" size={24} color="black" />
             </TouchableOpacity>
@@ -42,6 +52,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
         backgroundColor: 'white',
+        width: 300,
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row'
+      },
+      taskCompleted: {
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderStyle: 'solid',
+        textAlign: 'center',
+        padding: 10,
+        backgroundColor: 'red',
         width: 300,
         flex: 1,
         justifyContent: 'space-between',

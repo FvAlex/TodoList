@@ -77,7 +77,7 @@ export default function App() {
         <FlatList
           data={tasks}
           renderItem={({ item }) => {
-            return <Task id={item.id} title={item.title}
+            return <Task item={item}
                deleteTask={deleteTask} />
           }}
           keyExtractor={item => item.id.toString()}

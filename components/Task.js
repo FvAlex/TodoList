@@ -23,8 +23,12 @@ const Task = ({item, deleteTask}) => {
     )
 
     const check = () => {
-
-    }
+        if ( item.completed === false) {
+            item.completed = true
+        } else {
+            item.completed = false
+        }
+      }
 
     return (
         <View style={item.completed ? styles.taskCompleted: styles.task}>

@@ -59,6 +59,7 @@ export default function App() {
     // Remplacer l'état tasks par cette copie de tableau (indice setTasks)
     setTasks(tmpTasks);
   }
+  
 
   if(!fontsLoaded) {
     return(<AppLoading/>) 
